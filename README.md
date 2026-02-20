@@ -1,6 +1,7 @@
 # Sync Demo - Fake Third Party
 
 Demo project to test ERP synchronization with a fake third-party service.
+100% vibecoded as backing test tool for a POC.
 
 <img width="1161" height="800" alt="image" src="https://github.com/user-attachments/assets/285be1fd-8a70-4fbc-bc1c-e7eddc8e2dc9" />
 

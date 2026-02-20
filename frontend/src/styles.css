@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #f4f7ee;
+  --surface: #fffbf4;
+  --ink: #1f2b20;
+  --muted: #5b6d5a;
+  --accent: #136f63;
+  --accent-2: #ee6c4d;
+  --line: #d7decc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 0%, #ddeccd, transparent 35%),
+    radial-gradient(circle at 100% 30%, #f9d5c8, transparent 40%),
+    var(--bg);
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.hero {
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, #fef8ec, #eff4e6);
+  border-radius: 18px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input[type='url'],
+input[type='text'],
+select,
+input:not([type]) {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #bcc8b2;
+  background: #fff;
+}
+
+button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--accent);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.checkbox {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding: 10px 6px;
+}
+
+.customer-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+th {
+  border-top: 0;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+.attempts {
+  display: grid;
+  gap: 10px;
+}
+
+.attempts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.attempts-card {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.attempts-card .attempts {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.attempt {
+  border: 1px dashed #c7cfbb;
+  padding: 10px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.payload-view {
+  margin: 8px 0 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f7f9f1;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.error {
+  margin: 0;
+  color: #9c1b00;
+  font-weight: 700;
+}
+
+.error-inline {
+  color: #9c1b00;
+}
+
+.saving-inline {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 14px;
+  }
+
+  .attempts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attempts-card {
+    height: auto;
+    max-height: 50vh;
+  }
+
+  button,
+  input,
+  select {
+    width: 100%;
+  }
+}

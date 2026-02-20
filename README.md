@@ -1,32 +1,32 @@
 # Sync Demo - Fake Third Party
 
-Projet de démo pour tester une synchro ERP avec un faux third-party.
+Demo project to test ERP synchronization with a fake third-party service.
 
 ## Stack
 
-- Backend: FastAPI (Python), stockage en mémoire
+- Backend: FastAPI (Python), in-memory storage
 - Frontend: React + TypeScript + Vite
 
 ## Features
 
-- `POST /customers/push`: endpoint pour push ERP -> fake third-party (upsert customer, pas de webhook retour)
-- `GET /customers` et `GET /customers/{id}`: endpoints de lecture côté ERP
-- `POST /webhook/config`: configuration de l'URL webhook ERP
-- `POST /customers` et `PATCH /customers/{id}`: modifications côté fake third-party (déclenchent un webhook ERP)
-- UI React: visualisation état + édition des customers + journal des tentatives webhook sortantes et appels entrants ERP (payload inclus)
+- `POST /customers/push`: endpoint for ERP -> fake third-party push (upsert customer, no webhook back)
+- `GET /customers` and `GET /customers/{id}`: read endpoints for ERP
+- `POST /webhook/config`: configure the ERP webhook URL
+- `POST /customers` and `PATCH /customers/{id}`: changes on the fake third-party side (trigger ERP webhook)
+- React UI: state visualization + customer editing + outbound webhook attempts and inbound ERP calls log (payload included)
 
-Modèle `customer`:
-- `id` (string, id interne third-party)
-- `archived` (bool)
-- `payment_term` (`Net 30`, `Net 60` ou `null`)
+`customer` model:
+- `id` (string, internal third-party id)
+- `archived` (boolean)
+- `payment_term` (`Net 30`, `Net 60`, or `null`)
 
-## Démarrage rapide
+## Quick Start
 
-### Prérequis
+### Prerequisites
 
-- Python 3.11+ (ou 3.10+)
+- Python 3.11+ (or 3.10+)
 - uv (https://docs.astral.sh/uv/)
-- Node.js 20+ et npm
+- Node.js 20+ and npm
 
 ### 1) Terminal A - Backend
 
@@ -49,17 +49,17 @@ npm run dev
 
 UI: `http://localhost:5173`
 
-### 3) Vérifier que tout tourne
+### 3) Verify everything is running
 
-- API: `http://localhost:8000/health` doit répondre `{"status":"ok"}`
-- Front: ouvrir `http://localhost:5173`
+- API: `http://localhost:8000/health` should return `{"status":"ok"}`
+- Frontend: open `http://localhost:5173`
 
-## Exemple de flux
+## Example Flow
 
-1. Configurer le webhook ERP dans l'UI (`/webhook/config`).
-2. Pousser un customer depuis l'ERP (`POST /customers/push`) ou via l'UI bouton "Push from ERP".
-3. Modifier le customer dans l'UI puis cliquer sur "Save" (webhook implicite).
-4. Le backend met à jour la mémoire et appelle le webhook ERP avec l'event `customer.updated`.
+1. Configure the ERP webhook in the UI (`/webhook/config`).
+2. Push a customer from ERP (`POST /customers/push`) or from the UI "Push from ERP" button.
+3. Edit the customer in the UI (changes are patched directly).
+4. The backend updates in-memory state and calls the ERP webhook.
 
-URL webhook ERP par défaut:
+Default ERP webhook URL:
 - `http://localhost:8001/api/webhooks/third-party/sync`
